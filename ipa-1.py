@@ -37,7 +37,7 @@ def savings(gross_pay, tax_rate, expenses):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     import math
-    net_pay = math.floor(gross_pay-(gross_pay*tax_rate))
+    net_pay = gross_pay-math.floor(gross_pay*tax_rate)
     money = net_pay-expenses
     return money
 
@@ -149,5 +149,3 @@ def body_mass_index(weight, height):
     metric_height = ((height[0]*12)+height[1])*0.0254
     bmi = metric_weight/(metric_height**2)
     return bmi
-
-
