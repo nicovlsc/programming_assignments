@@ -43,7 +43,7 @@ def shift_letter(letter, shift):
     if letter == " ":
         return letter
     else:
-        chr_num = ord(letter) + shift
+        chr_num = ord(letter) + (shift % 26)
         if chr_num > 90:
             return chr(chr_num-26)
         else:
@@ -74,7 +74,7 @@ def caesar_cipher(message, shift):
         if letter == " ":
             message_cipher = message_cipher + letter
         else:
-            chr_num = ord(letter) + shift
+            chr_num = ord(letter) + (shift % 26)
             if chr_num > 90:
                 message_cipher = message_cipher + chr(chr_num-26)
             else:
