@@ -136,24 +136,20 @@ def eta(first_stop, second_stop, route_map):
         if first_stop not in keys[0]:
             i += 1
     for keys in legs_list[i - 1:]:
-        if first_stop in keys[0] and second_stop in keys[1]:
-            travel_time = route_map[keys]["travel_time_mins"]
+        if second_stop in keys[1]:
+            if first_stop in keys[0]:
+                travel_time = route_map[keys]["travel_time_mins"]
+            else:
+                travel_time += route_map[keys]["travel_time_mins"]
             return travel_time  
-        elif first_stop in keys[0] and second_stop not in keys[1]:
+        else:
             travel_time += route_map[keys]["travel_time_mins"]
-        elif first_stop not in keys[0] and second_stop not in keys[1]:
-            travel_time += route_map[keys]["travel_time_mins"]
-        elif first_stop not in keys[0] and second_stop in keys[1]:
-            travel_time += route_map[keys]["travel_time_mins"]
-            return travel_time
     for keys in legs_list:
-        if first_stop in keys[0] and second_stop in keys[1]:
-            travel_time = route_map[keys]["travel_time_mins"]
+        if second_stop in keys[1]:
+            if first_stop in keys[0]:
+                travel_time = route_map[keys]["travel_time_mins"]
+            else:
+                travel_time += route_map[keys]["travel_time_mins"]
             return travel_time  
-        elif first_stop in keys[0] and second_stop not in keys[1]:
+        else:
             travel_time += route_map[keys]["travel_time_mins"]
-        elif first_stop not in keys[0] and second_stop not in keys[1]:
-            travel_time += route_map[keys]["travel_time_mins"]
-        elif first_stop not in keys[0] and second_stop in keys[1]:
-            travel_time += route_map[keys]["travel_time_mins"]
-            return travel_time
