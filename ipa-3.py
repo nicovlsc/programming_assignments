@@ -41,7 +41,18 @@ def relationship_status(from_member, to_member, social_graph):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    to_socials = social_graph[to_member]["following"]
+    from_socials = social_graph[from_member]["following"]
+    if from_member in to_socials:
+        if to_member in from_socials:
+            return "friends"
+        else:
+            return "followed by"
+    else:
+        if to_member in from_socials:
+            return "follower"
+        else:
+            return "no relationship"
 
 
 def tic_tac_toe(board):
@@ -70,7 +81,19 @@ def tic_tac_toe(board):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    for col in range(len(board)):
+        if len(set(board[a][col] for a in range(len(board)))) == 1 and board[0][col] != '':
+            return board[0][col]
+    for row in board:
+        if row.count(row[0]) == len(board):
+            return row[0]
+    dia1 = [board[a][a] for a in range(len(board))]
+    if dia1.count(dia1[0]) == len(board) and dia1[0] != '':
+        return dia1[0]
+    dia2 = [board[a][len(board)-a-1] for a in range(len(board))]
+    if  dia2.count(dia2[0]) == len(board) and dia2[0] != '':
+        return dia2[0]
+    return "NO WINNER"
 
 def eta(first_stop, second_stop, route_map):
     '''ETA.
@@ -103,4 +126,34 @@ def eta(first_stop, second_stop, route_map):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    legs_list = list(route_map.keys())
+    travel_time = 0
+    i = 0 
+    for keys in legs_list:
+        if first_stop in keys[0]:
+            i += 1
+            break
+        if first_stop not in keys[0]:
+            i += 1
+    for keys in legs_list[i - 1:]:
+        if first_stop in keys[0] and second_stop in keys[1]:
+            travel_time = route_map[keys]["travel_time_mins"]
+            return travel_time  
+        elif first_stop in keys[0] and second_stop not in keys[1]:
+            travel_time += route_map[keys]["travel_time_mins"]
+        elif first_stop not in keys[0] and second_stop not in keys[1]:
+            travel_time += route_map[keys]["travel_time_mins"]
+        elif first_stop not in keys[0] and second_stop in keys[1]:
+            travel_time += route_map[keys]["travel_time_mins"]
+            return travel_time
+    for keys in legs_list:
+        if first_stop in keys[0] and second_stop in keys[1]:
+            travel_time = route_map[keys]["travel_time_mins"]
+            return travel_time  
+        elif first_stop in keys[0] and second_stop not in keys[1]:
+            travel_time += route_map[keys]["travel_time_mins"]
+        elif first_stop not in keys[0] and second_stop not in keys[1]:
+            travel_time += route_map[keys]["travel_time_mins"]
+        elif first_stop not in keys[0] and second_stop in keys[1]:
+            travel_time += route_map[keys]["travel_time_mins"]
+            return travel_time
