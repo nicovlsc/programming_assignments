@@ -85,7 +85,7 @@ def tic_tac_toe(board):
         if len(set(board[a][col] for a in range(len(board)))) == 1 and board[0][col] != '':
             return board[0][col]
     for row in board:
-        if row.count(row[0]) == len(board):
+        if row.count(row[0]) == len(board) and row[0] != '':
             return row[0]
     dia1 = [board[a][a] for a in range(len(board))]
     if dia1.count(dia1[0]) == len(board) and dia1[0] != '':
